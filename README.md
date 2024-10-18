@@ -59,18 +59,19 @@ Run the application:
 
 python app.py
 
-Modules
-Module 1: Financial Modeling
+
+
+## Modules
+
+### Module 1: Financial Modeling
 This module allows users to input financial data and apply various financial models to generate insights.
+- **Input:** Financial data (e.g., income, expenses, etc.)
+- **Output:** Analysis results based on the models defined in `models.py`.
 
-Input: Financial data (e.g., income, expenses, etc.)
-Output: Analysis results based on the models defined in models.py.
-Module 2: Financial Rules
+### Module 2: Financial Rules
 This module evaluates financial rules to ensure compliance and provide recommendations.
-
-Input: User financial data.
-Output: Feedback and suggestions based on the rules defined in rules.py.
-
+- **Input:** User financial data.
+- **Output:** Feedback and suggestions based on the rules defined in `rules.py`.
 
 
   
