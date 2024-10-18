@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Results</title>
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #66a6ff, 0 0 10px #66a6ff, 0 0 15px #66a6ff;
+            }
+            100% {
+                box-shadow: 0 0 20px #66a6ff, 0 0 40px #66a6ff, 0 0 60px #66a6ff;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 40px;
+            width: 400px;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+            display: inline-block;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: #fda085;
+            border-radius: 5px;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        .project-title {
+            font-size: 36px;
+            color: #66a6ff;
+            font-family: 'Iceberg', sans-serif; /* Make sure to include a suitable ice-themed font */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #b2e1ff, 0 0 20px #b2e1ff; /* Soft glow effect */
+            animation: fadeIn 1s ease-in;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        li {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #555;
+            font-weight: bold; /* Makes the results bold */
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Iceberg&display=swap" rel="stylesheet"> <!-- Add Google Font -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="project-title">Financial Analysis Project</h1> <!-- Project Title -->
+        <h2>Results</h2>
+        <ul>
+            <li>Rule 1: TOTAL_REVENUE_5CR_FLAG - <span class="result-bold">{{ results["flags"]["TOTAL_REVENUE_5CR_FLAG"] }}</span></li>
+            <li>Rule 2: BORROWING_TO_REVENUE_FLAG - <span class="result-bold">{{ results["flags"]["BORROWING_TO_REVENUE_FLAG"] }}</span></li>
+            <li>Rule 3: ISCR_FLAG - <span class="result-bold">{{ results["flags"]["ISCR_FLAG"] }}</span></li>
+        </ul>
+        <a href="{{ url_for('index') }}">Upload another file</a>
+    </div>
+</body>
+</html>

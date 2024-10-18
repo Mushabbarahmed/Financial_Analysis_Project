@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Model - File Upload</title>
+    <style>
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            overflow: hidden;
+            flex-direction: column; /* Arrange children vertically */
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 40px;
+            width: 400px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .project-title {
+            font-size: 36px;
+            color: #66a6ff;
+            font-family: 'Iceberg', sans-serif; /* Make sure to include a suitable ice-themed font */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #b2e1ff, 0 0 20px #b2e1ff; /* Soft glow effect */
+            animation: fadeInUp 1s ease-in;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: #fda085;
+            margin-top: 10px;
+            border-radius: 5px;
+            animation: pulse 1.5s infinite;
+        }
+
+        label {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 2px solid #fda085;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        input[type="submit"]:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Iceberg&display=swap" rel="stylesheet"> <!-- Add Google Font -->
+</head>
+<body>
+    <h1 class="project-title">Financial Analysis Project</h1> <!-- Project Title Outside Container -->
+    <div class="container">
+        <h1>Model</h1>
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+            <label for="file">Upload data</label>
+            <input type="file" name="file" id="file">
+            <input type="submit" value="Submit →">
+        </form>
+    </div>
+</body>
+</html>

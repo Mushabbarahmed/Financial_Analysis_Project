@@ -1,0 +1,17 @@
+/* For the bold-text in the results */
+.bold-text {
+    font-weight: bold;
+    color: #444; /* Customize as per your design */
+    font-size: 18px; /* Adjust the size for clarity */
+    margin-bottom: 15px; /* Adds spacing between each result */
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  
