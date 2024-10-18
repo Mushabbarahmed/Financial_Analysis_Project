@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
 import json
+import io
 from models import probe_model_5l_profit
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './uploads'
 app.config['ALLOWED_EXTENSIONS'] = {'json'}
 
+# Function to check if the uploaded file has an allowed extension
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
@@ -22,12 +24,12 @@ def upload_file():
     if file.filename == '':
         return redirect(request.url)
     if file and allowed_file(file.filename):
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-        file.save(filepath)
+        # Read the file in memory using BytesIO
+        file_content = file.read()
+        data = json.load(io.BytesIO(file_content))
 
-        with open(filepath, 'r') as json_file:
-            data = json.load(json_file)
-            results = probe_model_5l_profit(data['data'])
+        # Process the data
+        results = probe_model_5l_profit(data['data'])
 
         return redirect(url_for('results', results=json.dumps(results)))
 
@@ -41,6 +43,4 @@ def results():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    if not os.path.exists(app.config['UPLOAD_FOLDER']):
-        os.makedirs(app.config['UPLOAD_FOLDER'])
     app.run(debug=True)
