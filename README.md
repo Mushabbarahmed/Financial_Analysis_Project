@@ -42,16 +42,26 @@ pip install -r requirements.txt
 Project Structure
 
 /financial_analysis
-**│
+│
+
 ├── app.py                # Main application file
+
 ├── models.py             # Financial models
+
 ├── rules.py              # Financial rules
+
 ├── templates/            # HTML templates
+
 │   ├── index.html
+
 │   ├── module1.html
+
 │   └── module2.html
+
 └── static/               # Static files (CSS, JS, images)
-**
+
+
+
 
 
 
